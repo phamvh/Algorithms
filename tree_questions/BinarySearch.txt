@@ -1,0 +1,47 @@
+public Node predecessor(Node x){
+	if(x.hasLeftChild()){
+		return max(x.getLeftChild());
+	}
+	Node parent;
+	while(x.hasParent()){
+		parent = x.getParent();
+		if(x==parent.getLeftChild())
+			return parent;
+		x = parent;
+	}
+	return null;
+	
+}
+
+public Node successor(Node x){
+	if(x.hasRightChild())
+		return min(x.getRightChild());
+	if(!x.hasParent())
+		return null;
+	Node p;
+	while(x.hasParent()){
+		p = x.getParent();
+		if(x = p.getRightChild()){
+			return p;
+		}
+		x = p;
+	}
+	return null;
+}
+
+public Node min(Node node){
+	Node min = node;
+	while(min.hasLeftChild()){
+	    min = min.getLeftChild();
+	}
+	return min;
+}
+
+public Node max(Node node){
+	Node max = node;
+	while(max.hasRightChild()){
+		max = max.getRightChild();
+	}
+	return max;
+}
+
